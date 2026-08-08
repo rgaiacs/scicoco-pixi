@@ -1,0 +1,24 @@
+name: quarto
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  quarto:
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - uses: quarto-dev/quarto-actions/setup@v2
+      - uses: actions/checkout@v7
+      - run: |
+          quarto render index.qmd --output-dir public --log-level info
+      - name: Upload artifact to GitHub
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: public
+      - name: Publish GitHub pages
+        uses: actions/deploy-pages@v4
