@@ -4,9 +4,554 @@ author: Raniere Silva
 format: revealjs
 ---
 
-# Part 1
+# Part 1 {background-image="./img/part1.jpg" background-opacity="0.4"}
 
 ## Agenda
+
+| Duration | Content |
+| --- | --- |
+| 15min | Introduction and Installation |
+| 5min | Break |
+| 15min | Learner example |
+| 5min | Break |
+| 15min | Instructor example |
+
+## Computational environment
+
+![](img/computational-environment.svg)
+
+## Shareable
+
+![](img/shareable-computational-environment.svg)
+
+## Why?
+
+1. Operating system (OS) and programming language agnostic.
+2. Avoid user privilege escalation, i.e. `sudo`.
+3. Avoid users to have to walk pass the [dependency hell](https://en.wikipedia.org/wiki/Dependency_hell).
+
+   - Long chains of dependencies
+   - Conflicting dependencies
+
+4. Avoid users reporting bugs that only work on their computer.
+5. Share alias for the command line interface (cli).
+
+## {background-image="img/screenshot-pixi.sh.png" background-position="top"}
+
+::: aside
+Screenshot of https://pixi.prefix.dev/latest/ on 2026-01-05.
+:::
+
+## File system used by Pixi
+
+![](img/pixi.svg)
+
+## File system used by Conda
+
+![](img/conda.svg)
+
+## Use containers instead
+
+If your project has one of the following requirements
+
+- run two database serves simultaneous
+- use a different version of C standard library
+
+you should use containers (for example, [Podman](https://podman.io/), [Docker](https://www.docker.com/), [Apptainer](https://apptainer.org/), ...) instead of Pixi.
+
+Also, you **must** use containers if you want complete isolation from the host machine.
+
+## How?
+
+1. Pixi uses its own package repository.
+2. Pixi uses its own copy of the dependencies.
+3. Pixi locks the full dependency tree.
+4. Pixi will check if all the dependencies are satisfied before executing tasks.
+
+## Requirements
+
+1. Package repository
+
+   Because Pixi primarily install packages from [conda-forge](https://github.com/conda-forge).
+2. Computation (as in number of CPU)
+
+   Because Pixi will check the dependencies before each task execution.
+3. Storage (as in size of HDD)
+
+   Because Pixi will duplicate the dependencies for each project.
+4. Transfer (as in speed of Internet connection)
+
+   Because some dependencies can be in the 3 digits MB.
+
+## Where are we
+
+| | 1995 (Windows 95) | 2009 (Windows 7) | 2021 (Windows 11) |
+| --- | --- | --- | --- |
+| CPU | Intel® 200 MHz Pentium® | Intel® Core™ 2.6GHz | Intel® Core™ 5.2GHz |
+| RAM | 32 MB | 3GB | 16GB |
+| HDD | 3.8 GB | 500GB | 1TB |
+| Internet | 30 Kb/s | 10 Mb/s | 100 Mb/s |
+
+:::{.notes}
+1995 information based on https://web.archive.org/web/19961221060500/http://www.dell.com/products/dim/xps/index.htm
+
+2009 information based on https://web.archive.org/web/20100228194635/http://www.dell.com/us/en/home/desktops/desktop-studio-xps-9000/pd.aspx?refid=desktop-studio-xps-9000&cs=19&s=dhs
+
+2021 information based on https://web.archive.org/web/20210713014926/https://www.dell.com/en-us/shop/desktop-computers/xps-desktop/spd/xps-8940-desktop/xd8940msr50h
+
+Internet speed based on https://www.reddit.com/r/coolguides/comments/1l95e53/a_cool_guide_to_average_us_internet_speeds_over/#lightbox
+:::
+
+## `pixi.toml`
+
+Pixi uses the file `pixi.toml` as the human readable configuration file.
+
+::: {.callout-tip}
+`pixi.toml` can be created using
+
+```bash
+pixi init
+```
+:::
+
+## Example of `pixi.toml`
+
+```toml
+[workspace]
+authors = ["Jane Doe <Jane.Doe@digital-research.academy>"]
+channels = ["conda-forge"]
+name = "example"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+python = ">=3.14.0,<3.15"
+```
+
+## `pixi.lock`
+
+Pixi uses the file `pixi.lock` as the machine readable configuration file and includes a full description of the environment.
+
+::: {.callout-important}
+`pixi.lock` **must** be included in your version controlled repository.
+:::
+
+## Example of `pixi.lock`
+
+```yaml
+version: 6
+environments:
+  default:
+    channels:
+    - url: https://conda.anaconda.org/conda-forge/
+    packages:
+      linux-64:
+      ...
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.0-h26f9b46_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/linux-64/python-3.14.0-h32b2ec7_102_cp314.conda
+      ...
+packages:
+...
+- conda: https://conda.anaconda.org/conda-forge/linux-64/openssl-3.6.0-h26f9b46_0.conda
+  sha256: a47271202f4518a484956968335b2521409c8173e123ab381e775c358c67fe6d
+  md5: 9ee58d5c534af06558933af3c845a780
+  depends:
+  - __glibc >=2.17,<3.0.a0
+  - ca-certificates
+  - libgcc >=14
+  license: Apache-2.0
+  license_family: Apache
+  size: 3165399
+  timestamp: 1762839186699
+- conda: https://conda.anaconda.org/conda-forge/linux-64/python-3.14.0-h32b2ec7_102_cp314.conda
+  build_number: 102
+  sha256: 76d750045b94fded676323bfd01975a26a474023635735773d0e4d80aaa72518
+  md5: 0a19d2cc6eb15881889b0c6fa7d6a78d
+  depends:
+  ...
+  license: Python-2.0
+  size: 36681389
+  timestamp: 1761176838143
+  python_site_packages_path: lib/python3.14/site-packages
+```
+
+## `.pixi`
+
+Pixi uses the directory `.pixi` to store a working copy of all the dependencies of the project.
+
+::: {.callout-tip}
+`.pixi` **must** be excluded from your version controled repository.
+
+Pixi will configure your `.gitignore` when you run
+
+```bash
+pixi init
+```
+:::
+
+## Example of `.pixi`
+
+```
+.pixi/
+└── envs
+    └── default
+        ├── bin
+        ⋮   ⋮
+        │   ├── openssl
+        │   ├── python -> python3.14
+        │   ├── python3 -> python3.14
+        │   ├── python3.1 -> python3.14
+        │   ├── python3.14
+        ⋮   ⋮
+        ├── include
+        ⋮   ⋮
+        │   ├── openssl
+        │   │   ├── aes.h
+        ⋮   ⋮    ⋮
+        │   ├── python3.14
+        │   │   ├── abstract.h
+        ⋮   ⋮    ⋮
+        ├── lib
+        │   ├── libpython3.14.so -> libpython3.14.so.1.0
+        │   ├── libpython3.14.so.1.0
+        │   ├── libpython3.so
+        ⋮   ⋮
+        │   ├── python3.14
+        │   │   ├── abc.py
+        ⋮   ⋮    ⋮
+```
+
+## Installation
+
+### Windows
+
+On **PowerShell**, run
+
+```powershell
+powershell -ExecutionPolicy ByPass `
+  -c "irm -useb https://pixi.sh/install.ps1 | iex"
+```
+
+Pay attention to the backtick (`` ` ``) at the end of the first line.
+
+### Unix-like
+
+On your terminal emulator, run
+
+```bash
+curl -fsSL https://pixi.sh/install.sh | sh
+```
+
+### Other Methods
+
+Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's documentation.
+
+## Sarah's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[![Image by Netguru.](img/446476.svg)](https://www.svgrepo.com/svg/446476/avatar-portrait)
+:::
+
+::: {.column width="50%"}
+- Load course material
+- Learn programming using Jupyter Notebook
+- Data analysis with [R](https://cran.r-project.org/)
+- Data visualisation with [ggplot2](https://ggplot2.tidyverse.org/)
+:::
+
+::::
+
+## Sarah's use case - Cheat sheet
+
+1.  Copy course material:
+
+    ```bash
+    git clone https://github.com/rgaiacs/dra-ttt-course-pixi-mwe.git
+    ```
+
+2. Change directory
+
+    ```bash
+    cd dra-ttt-course-pixi-mwe
+    ```
+
+3.  Check tasks created by instructor:
+
+    ```bash
+    pixi task list
+    ```
+
+4.  Start Jupyter Lab:
+
+    ```bash
+    pixi run lab
+    ```
+
+5.  Convert Notebook to R script
+
+    ```bash
+    pixi run jupyter nbconvert notes.ipynb --to script
+    ```
+
+## Renata's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[![Image by Netguru.](img/446522.svg)](https://www.svgrepo.com/svg/446522/avatar-portrait)
+:::
+
+::: {.column width="50%"}
+- Course development
+- Data analysis with [R](https://cran.r-project.org/)
+- Data visualisation with [ggplot2](https://ggplot2.tidyverse.org/)
+:::
+
+::::
+
+## Renata's use case - Cheat sheet
+
+1.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+2.  Add dependencies:
+
+    ```bash
+    pixi add jupyterlab r-base r-ggplot2 xeus-r
+    ```
+
+3.  Create alias for tasks:
+
+    ```bash
+    pixi task add lab "jupyter lab --no-browser"
+    ```
+
+4.  Share files:
+
+    ```bash
+    git add . && git commit -m "Add pixi config" && git push origin main
+    ```
+
+## Environment activation - Cheat sheet
+
+1.  Activate environment:
+
+    ```bash
+    pixi shell
+    ```
+
+2.  Run R command:
+
+    ```bash
+    Rscript -e "1 + 1"
+    ```
+
+::: {.callout-important}
+Pixi does **not** isolate the environment. Tools installed globally will be available. 
+:::
+
+## More features
+
+1.  Integration with
+    - VSCode
+    - RStudio
+    - JupyterLab
+    - GitHub Actions
+    - ...
+2.  Support to multi platform.
+
+    For example, it is possible to specify Python 3.14 for GNU/Linux and Python 3.13 for Windows.
+
+## That's All Folks
+
+1.  Read [Pixi's documentation](https://pixi.sh/latest/).
+2.  Ask question at [Pixi's Discussions hosted on GitHub](https://github.com/prefix-dev/pixi/discussions).
+
+## Multi Environment (1/3)
+
+1.  Create `hello.py` with
+
+    ```python
+    try:
+        print("Hello!")
+    except RuntimeError, ValueError:
+        print('Except.')
+    ```
+
+2.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi task add hello "python hello.py"
+    ```
+
+## Multi Environment (2/3)
+
+4.  Edit `pixi.toml` to include
+
+    ```
+    [feature.py313.dependencies]
+    python = "~=3.13.0"
+
+    [feature.py314.dependencies]
+    python = "~=3.14.0"
+
+    [environments]
+    py313 = ["py313"]
+    py314 = ["py314"]
+    ```
+
+## Multi Environment (3/3)
+
+4.  Run task:
+
+    ```bash
+    pixi run -e py314 hello
+    ```
+
+5.  Run task:
+
+    ```bash
+    pixi run -e py313 hello
+    ```
+
+## Camila's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[![Image by Netguru.](img/446477.svg)](https://www.svgrepo.com/svg/446477/avatar)
+:::
+
+::: {.column width="50%"}
+- New application written in C
+:::
+
+::::
+
+## Camila's C code
+
+```c
+#include <stdio.h>
+
+int main() {
+    printf("Hello World");
+
+    return 0;
+}
+```
+
+## Camila's use case - Cheat sheet
+
+1.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+2.  Add dependencies:
+
+    ```bash
+    pixi add gcc
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi task add make "gcc -o hello hello.c"
+    ```
+
+4.  Run task:
+
+    ```bash
+    pixi run make
+    ```
+
+## Caution when creating tasks
+
+Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.deno.com/runtime/reference/cli/task/#built-in-commands).
+
+1.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi task add myhead "head --help"
+    ```
+
+4.  Run task:
+
+    ```bash
+    pixi run myhead
+    ```
+
+## Paige's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+[![Image by Netguru.](img/446491.svg)](https://www.svgrepo.com/svg/446491/avatar)
+:::
+
+::: {.column width="50%"}
+- Image processing with Python
+- Jupyter Notebook for exploratory analysis
+:::
+
+::::
+
+## Paige's use case - Cheat sheet
+
+1.  Start environment:
+
+    ```bash
+    pixi init --format pyproject
+    ```
+
+2.  Add dependencies:
+
+    ```bash
+    pixi add Pillow requests jupyter notebook
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi run jupyter notebook
+    ```
+
+## Paige's use case - Jupyter Notebook
+
+```python
+import requests
+from PIL import Image
+from io import BytesIO
+
+with requests.get(
+    'https://github.com/python-pillow/Pillow/' +
+    'blob/main/Tests/images/hopper.jpg?raw=true'
+    ) as r:
+    if r.status_code == 200:
+        hopper = Image.open(BytesIO(r.content))
+
+hopper
+```
 
 # Part 2
 
