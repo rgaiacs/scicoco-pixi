@@ -14,11 +14,12 @@ title-slide-attributes:
 
 | Duration | Content |
 | --- | --- |
-| 15min | Introduction and Installation |
+| 25min | Introduction and Installation |
 | 5min | Break |
-| 15min | Learner example |
+| 25min | Motivation example |
 | 5min | Break |
-| 15min | Instructor example |
+| 25min | Learner example |
+| 5min | Break |
 
 ## Computational environment
 
