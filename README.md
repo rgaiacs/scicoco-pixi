@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2026 Raniere Gaia Costa da Silva <raniere@rgaiacs.com>
+
+SPDX-License-Identifier: CC0-1.0
+-->
+
 # It Works on YOUR Machine too thanks to Pixi
 
 This repository is the home for the workshop "It Works on YOUR Machine too thanks to Pixi" ([part 1](https://events.hifis.net/event/3911/contributions/24895/) and [part 2](https://events.hifis.net/event/3911/contributions/24910/)) at [SciCoCo.nrw – Science, Compute, Connect](https://events.hifis.net/event/3911/).

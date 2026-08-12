@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2026 Raniere Gaia Costa da Silva <raniere@rgaiacs.com>
+#
+# SPDX-License-Identifier: CC0-1.0
+
 # pixi environments
 .pixi/*
 !.pixi/config.toml
