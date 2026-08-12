@@ -19,3 +19,6 @@ reuse = ">=6.2.0,<7"
 
 [environments.spdx.tasks.lint]
 cmd = "reuse lint"
+
+[environments.spdx.tasks.annotate]
+cmd = "reuse annotate --fallback-dot-license"
