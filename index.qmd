@@ -21,6 +21,25 @@ title-slide-attributes:
 | 25min | Learner example |
 | 5min | Break |
 
+## Alice and Bob
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Alice
+
+![](./img/alice.svg)
+:::
+
+::: {.column width="50%"}
+### Bob
+
+![](./img/bob.svg)
+
+:::
+
+::::
+
 ## Computational environment
 
 ![](img/computational-environment.svg)
