@@ -44,6 +44,14 @@ title-slide-attributes:
 
 ![](img/computational-environment.svg)
 
+## Alice's computational environment
+
+![](img/alice-computational-environment.svg)
+
+## Bob's computational environment
+
+![](img/bob-computational-environment.svg)
+
 ## Shareable
 
 ![](img/shareable-computational-environment.svg)
