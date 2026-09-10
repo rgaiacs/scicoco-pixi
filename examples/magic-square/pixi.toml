@@ -11,12 +11,87 @@ version = "0.1.0"
 args = [
     {
         "arg" = "version",
-        "default" = "43",
-        "choices" = ["43", "45"]
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
     },
 ]
-cmd = "curl --location --output gplk-{{ version }}.tar.gz https://ftp.gnu.org/gnu/glpk/glpk-{{ version }}.tar.gz"
-outputs = ["gplk-{{ version }}.tar.gz"]
+cmd = "curl --location --output glpk-{{ version }}.tar.gz https://ftp.gnu.org/gnu/glpk/glpk-{{ version }}.tar.gz"
+outputs = ["glpk-{{ version }}.tar.gz"]
+
+[tasks.unzip]
+depends-on = [
+    { task = "download", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+cmd = "tar -xzf glpk-{{ version }}.tar.gz"
+inputs = ["glpk-{{ version }}.tar.gz"]
+outputs = ["glpk-{{ version }}"]
+
+[tasks.configure]
+depends-on = [
+    { task = "unzip", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+env = {
+    CFLAGS = "-std=c89"
+}
+cmd = "cd glpk-{{ version }}; ./configure --disable-shared --prefix={{ pixi.init_cwd }};"
+inputs = ["glpk-{{ version }}"]
+outputs = ["glpk-{{ version }}/Makefile"]
+
+[tasks.make]
+depends-on = [
+    { task = "configure", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+cmd = "cd glpk-{{ version }}; make"
+inputs = ["glpk-{{ version }}/Makefile"]
+outputs = ["glpk-{{ version }}/examples/glpsol"]
+
+[tasks.version]
+depends-on = [
+    { task = "make", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+cmd = "./glpk-{{ version }}/examples/glpsol --version"
+inputs = ["glpk-{{ version }}/examples/glpsol"]
+
+[tasks.solve]
+depends-on = [
+    { task = "make", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+cmd = "./glpk-{{ version }}/examples/glpsol --math -m model.mod"
 
 [dependencies]
 curl = ">=8.22.0,<9"
