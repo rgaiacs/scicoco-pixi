@@ -7,5 +7,16 @@ version = "0.1.0"
 
 [tasks]
 
+[tasks.download]
+args = [
+    {
+        "arg" = "version",
+        "default" = "43",
+        "choices" = ["43", "45"]
+    },
+]
+cmd = "curl --location --output gplk-{{ version }}.tar.gz https://ftp.gnu.org/gnu/glpk/glpk-{{ version }}.tar.gz"
+outputs = ["gplk-{{ version }}.tar.gz"]
+
 [dependencies]
 curl = ">=8.22.0,<9"
