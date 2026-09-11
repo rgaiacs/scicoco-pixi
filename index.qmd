@@ -1,6 +1,7 @@
 ---
 title: "It Works on YOUR Machine too thanks to Pixi"
 author: Raniere Silva
+date: 2026-09-22
 format: revealjs
 title-slide-attributes:
   data-background-image: ./img/screwdriver.jpg
@@ -8,18 +9,181 @@ title-slide-attributes:
   data-background-opacity: "0.6"
 ---
 
+## Sorting Out the FACS: A Devil in the Details
+
+> We have reproduced these results several times in each of our laboratories and are confident that the speed and length of agitation during the collagenase digestion has a dramatic effect both on organoid yield and CD44 antigen presentation in the CD10+ cell fraction.
+
+Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.021)
+
+## Your instructor
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Research Software Engineer (RSE)
+- Interested in science reprodubility
+- Contributor of Jupyter
+- Enthusiastic about Pixi, Podman, and Ansible
+:::
+
+::: {.column width="50%"}
+![](img/raniere-silva.jpg){fig-align="center"}
+:::
+
+::::
+
+## Terminology
+
+![](./img/reproducible-matrix.jpg)
+
+Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/)
+
 # Part 1 {background-image="./img/part1.jpg" background-opacity="0.6"}
 
 ## Agenda
 
 | Duration | Content |
 | --- | --- |
-| 25min | Introduction and Installation |
-| 5min | Break |
 | 25min | Motivation example |
+| 5min | Break |
+| 25min | Introduction and Installation |
 | 5min | Break |
 | 25min | Learner example |
 | 5min | Break |
+
+# Motivation example {background-image="./img/carrot.jpg" background-opacity="0.6"}
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Lecturer
+
+![](./img/meg.svg)
+:::
+
+::: {.column width="50%"}
+> Let's try to find some magic squares!
+:::
+
+::::
+
+## {background-image="./img/magic-square.png"}
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> The largest magic square that I found was a 4 by 4.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> I found a larger magic square. The largest magic square that I found was a 6 by 6.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Can you share your code? I would love to learn from it.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> Absolutely. It is on Codeberg. It is all open source. Better software, better research!
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Thanks for share your code. I re-run your code and I was **not** able to reproduce your results.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> Interesting. I searched for magic squares using ...
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Thanks for all the details of your computational environment. I recreated your computational environment and when I re-run your code and I reproduced your results.
+:::
+
+::::
+
+# Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
 ## Alice and Bob
 
@@ -50,13 +214,15 @@ title-slide-attributes:
 
 ## Bob's computational environment
 
-![](img/bob-computational-environment.svg)
+![](./img/bob-computational-environment.svg)
 
 ## Shareable
 
-![](img/shareable-computational-environment.svg)
+![](./img/shareable-computational-environment.svg)
 
-## Why?
+# {background-image="./img/python_environment.png" background-size="contain" background-opacity="1"}
+
+## Why Pixi?
 
 1. Operating system (OS) and programming language agnostic.
 2. Avoid user privilege escalation, i.e. `sudo`.
@@ -279,6 +445,8 @@ curl -fsSL https://pixi.sh/install.sh | sh
 ### Other Methods
 
 Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's documentation.
+
+# Learner example {background-image="./img/cake.jpg" background-opacity="0.6"}
 
 ## Sarah's use case
 
