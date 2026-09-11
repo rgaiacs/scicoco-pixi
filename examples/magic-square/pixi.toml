@@ -80,6 +80,19 @@ args = [
 cmd = "./glpk-{{ version }}/examples/glpsol --version"
 inputs = ["glpk-{{ version }}/examples/glpsol"]
 
+[tasks.glpsol]
+depends-on = [
+    { task = "make", args = ["{{ version }}"] },
+]
+args = [
+    {
+        "arg" = "version",
+        "default" = "4.39",
+        "choices" = ["4.39", "4.40"]
+    },
+]
+cmd = "./glpk-{{ version }}/examples/glpsol"
+
 [tasks.solve]
 depends-on = [
     { task = "make", args = ["{{ version }}"] },
@@ -91,7 +104,7 @@ args = [
         "choices" = ["4.39", "4.40"]
     },
 ]
-cmd = "./glpk-{{ version }}/examples/glpsol --math -m model.mod"
+cmd = "./glpk-{{ version }}/examples/glpsol --math --model model.mod --tmlim 300 --memlim 100"
 
 [dependencies]
 curl = ">=8.22.0,<9"
