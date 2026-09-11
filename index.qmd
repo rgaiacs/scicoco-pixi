@@ -53,6 +53,136 @@ Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/o
 
 # Motivation example {background-image="./img/carrot.jpg" background-opacity="0.6"}
 
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Lecturer
+
+![](./img/meg.svg)
+:::
+
+::: {.column width="50%"}
+> Let's try to find some magic squares!
+:::
+
+::::
+
+## {background-image="./img/magic-square.png"}
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> The largest magic square that I found was a 4 by 4.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> I found a larger magic square. The largest magic square that I found was a 6 by 6.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Can you share your code? I would love to learn from it.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> Absolutely. It is on Codeberg. It is all open source. Better software, better research!
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Thanks for share your code. I re-run your code and I was **not** able to reproduce your results.
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Colleague
+
+![](./img/paola.svg)
+:::
+
+::: {.column width="50%"}
+> Interesting. I searched for magic squares using ...
+:::
+
+::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Thanks for all the details of your computational environment. I recreated your computational environment and when I re-run your code and I reproduced your results.
+:::
+
+::::
+
 # Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
 ## Alice and Bob
