@@ -15,18 +15,45 @@ title-slide-attributes:
 
 Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.021)
 
+## Your instructor
+
+:::: {.columns}
+
+::: {.column width="50%"}
+- Research Software Engineer (RSE)
+- Interested in science reprodubility
+- Contributor of Jupyter
+- Enthusiastic about Pixi, Podman, and Ansible
+:::
+
+::: {.column width="50%"}
+![](img/raniere-silva.jpg){fig-align="center"}
+:::
+
+::::
+
+## Terminology
+
+![](./img/reproducible-matrix.jpg)
+
+Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/)
+
 # Part 1 {background-image="./img/part1.jpg" background-opacity="0.6"}
 
 ## Agenda
 
 | Duration | Content |
 | --- | --- |
-| 25min | Introduction and Installation |
-| 5min | Break |
 | 25min | Motivation example |
+| 5min | Break |
+| 25min | Introduction and Installation |
 | 5min | Break |
 | 25min | Learner example |
 | 5min | Break |
+
+# Motivation example {background-image="./img/carrot.jpg" background-opacity="0.6"}
+
+# Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
 ## Alice and Bob
 
@@ -57,11 +84,11 @@ Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.
 
 ## Bob's computational environment
 
-![](img/bob-computational-environment.svg)
+![](./img/bob-computational-environment.svg)
 
 ## Shareable
 
-![](img/shareable-computational-environment.svg)
+![](./img/shareable-computational-environment.svg)
 
 # {background-image="./img/python_environment.png" background-size="contain" background-opacity="1"}
 
@@ -288,6 +315,8 @@ curl -fsSL https://pixi.sh/install.sh | sh
 ### Other Methods
 
 Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's documentation.
+
+# Learner example {background-image="./img/cake.jpg" background-opacity="0.6"}
 
 ## Sarah's use case
 
