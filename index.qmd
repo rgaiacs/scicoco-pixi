@@ -1,12 +1,19 @@
 ---
 title: "It Works on YOUR Machine too thanks to Pixi"
 author: Raniere Silva
+date: 2026-09-22
 format: revealjs
 title-slide-attributes:
   data-background-image: ./img/screwdriver.jpg
   data-background-position: bottom
   data-background-opacity: "0.6"
 ---
+
+## Sorting Out the FACS: A Devil in the Details
+
+> We have reproduced these results several times in each of our laboratories and are confident that the speed and length of agitation during the collagenase digestion has a dramatic effect both on organoid yield and CD44 antigen presentation in the CD10+ cell fraction.
+
+Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.021)
 
 # Part 1 {background-image="./img/part1.jpg" background-opacity="0.6"}
 
@@ -58,7 +65,7 @@ title-slide-attributes:
 
 # {background-image="./img/python_environment.png" background-size="contain" background-opacity="1"}
 
-## Why?
+## Why Pixi?
 
 1. Operating system (OS) and programming language agnostic.
 2. Avoid user privilege escalation, i.e. `sudo`.
