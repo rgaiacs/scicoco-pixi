@@ -19,14 +19,15 @@ Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.
 
 :::: {.columns}
 
-::: {.column width="50%"}
+::: {.column width="60%"}
 - Research Software Engineer (RSE)
+- Fellow of the Institute of Research Software (IRS)
 - Interested in science reprodubility
 - Contributor of Jupyter
-- Enthusiastic about Pixi, Podman, and Ansible
+- Enthusiastic about WebAssembly, Pixi, Podman, and Ansible
 :::
 
-::: {.column width="50%"}
+::: {.column width="40%"}
 ![](img/raniere-silva.jpg){fig-align="center"}
 :::
 
@@ -69,7 +70,7 @@ Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/o
 
 ::::
 
-## {background-image="./img/magic-square.png"}
+## {background-image="./img/magic-square.png" background-position="top"}
 
 ## Story
 
@@ -151,6 +152,20 @@ Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/o
 
 ::::
 
+## Poll {background-image="./img/poll.jpg" background-opacity="0.6"}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+Why did the attempt to reproduce the results fail?
+:::
+
+::: {.column width="40%"}
+
+:::
+
+::::
+
 ## Story
 
 :::: {.columns}
@@ -167,6 +182,15 @@ Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/o
 
 ::::
 
+## Environment diff
+
+| Software | Colleague | Young Raniere |
+| --- | --- | --- |
+| OS | Windows | Ubuntu |
+| Shell | cmd | bash |
+| Solver | GLPK 4.38 | GLPK 4.45 |
+| Solver source | SourceForge.net | Ubuntu |
+
 ## Story
 
 :::: {.columns}
@@ -182,6 +206,45 @@ Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/o
 :::
 
 ::::
+
+## Story
+
+:::: {.columns}
+
+::: {.column width="50%"}
+### Young Raniere
+
+![](./img/young-raniere-silva.svg)
+:::
+
+::: {.column width="50%"}
+> Something changed in GLPK. But what?
+:::
+
+::::
+
+## Bisect {background-image="./img/bisect.jpg" background-opacity="0.6"}
+
+- 4.38 is good
+- 4.39 is unknown
+- 4.40 is unknown
+- 4.41 is unknown
+- 4.42 is unknown
+- 4.43 is unknown
+- 4.44 is unknown
+- 4.45 is bad
+
+## Changelog
+
+GLPK 4.40 include the following change
+
+> `glpios03.c`
+>
+> The branching heuristic by Driebeck and Tomlin (used in the MIP solver by default) was changed to switch to branching on most fractional variable [...]
+
+## Live demo
+
+
 
 # Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
