@@ -39,6 +39,12 @@ Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.
 
 Source: [The Turing Way](https://book.the-turing-way.org/reproducible-research/overview/overview-definitions/)
 
+## Supporting files
+
+```bash
+git clone https://github.com/rgaiacs/scicoco-pixi.git
+```
+
 # Part 1 {background-image="./img/part1.jpg" background-opacity="0.6"}
 
 ## Agenda
@@ -244,7 +250,13 @@ GLPK 4.40 include the following change
 
 ## Live demo
 
+If you are using a GNU/Linux machine, you can run
 
+```bash
+cd examples/magic-square/
+pixi run solve 4.39
+pixi run solve 4.40
+```
 
 # Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
