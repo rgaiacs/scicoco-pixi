@@ -1,0 +1,22 @@
+[workspace]
+authors = ["Raniere Gaia Costa da Silva <Raniere.CostadaSilva@gesis.org>"]
+channels = ["conda-forge"]
+name = "teri"
+platforms = ["win-64", "linux-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[dependencies]
+# We need a python version that is compatible with pytorch
+python = ">=3.10,<3.14"
+
+[pypi-dependencies]
+torch = {
+  version = ">=2.5.1",
+  index = "https://download.pytorch.org/whl/cu124"
+}
+
+[target.osx.pypi-dependencies]
+# OSX has no CUDA support so use the CPU here
+torch = { version = ">=2.5.1", index = "https://download.pytorch.org/whl/cpu" }
