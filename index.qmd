@@ -750,51 +750,106 @@ Use of GPU has it's own limitations.
 
 # Part 2 {background-image="./img/part2.jpg" background-opacity="0.6"}
 
+## Terminology
+
+platform
+: it is a combination of hardware and software, e.g. Windows AMD64 and macOS ARM64.
+
+workspace
+: it is a directory with a file named `pixi.toml` or `pyproject.toml`.
+
+feature
+: reusable collection of dependencies and tasks
+
+environment
+: composable set of dependencies and tasks from features
+
 ## Agenda
 
-## Renata's use case
+1. Data analysis
+2. Python package
 
-:::: {.columns}
+## Data analysis - Cheat sheet (1/2)
 
-::: {.column width="50%"}
-[![Image by Netguru.](img/446522.svg)](https://www.svgrepo.com/svg/446522/avatar-portrait)
-:::
-
-::: {.column width="50%"}
-- Course development
-- Data analysis with [R](https://cran.r-project.org/)
-- Data visualisation with [ggplot2](https://ggplot2.tidyverse.org/)
-:::
-
-::::
-
-## Renata's use case - Cheat sheet
-
-1.  Start environment:
+1.  Start new workspace:
 
     ```bash
-    pixi init
+    pixi init data-analysis
     ```
 
-2.  Add dependencies:
+2.  Change directory:
+
+    ```bash
+    cd data-analysis
+    ```
+
+3.  Add dependencies to `default` workspace:
 
     ```bash
     pixi add jupyterlab r-base r-ggplot2 xeus-r
     ```
 
-3.  Create alias for tasks:
+## Data analysis - Cheat sheet (2/2)
+
+4.  Create task in `default` workspace:
 
     ```bash
     pixi task add lab "jupyter lab --no-browser"
     ```
 
-4.  Share files:
+5.  Share files:
 
     ```bash
     git add . && git commit -m "Add pixi config" && git push origin main
     ```
 
+## Python package - Cheat sheet (1/2)
+
+1.  Start new workspace:
+
+    ```bash
+    pixi init scicoco --format pyproject
+    ```
+
+2.  Change directory:
+
+    ```bash
+    cd scicoco
+    ```
+
+::: {.callout-note}
+The Pixi configuration is in the `tool.pixi` namespace.
+:::
+
+::: {.callout-note}
+The name of the workspace is also the name of the Python package.
+:::
+
+## Python package - Cheat sheet (2/2)
+
+3. Create environment for Python 3.10 and 3.14.
+
+    ```bash
+    pixi workspace environment add py311
+    pixi add --environment py311 python=3.11
+    pixi workspace environment add py314
+    pixi add -e py314 python=3.14
+    ```
+
+4. Load the `scicoco` package with both environments.
+
+    ```bash
+    pixi run -e py311 python -c "import scicoco"
+    pixi run -e py314 python -c "import scicoco"
+    ```
+
 ## Environment activation - Cheat sheet
+
+3.  Add dependencies to `default` workspace:
+
+    ```bash
+    pixi add jupyterlab r-base r-ggplot2 xeus-r
+    ```
 
 1.  Activate environment:
 
