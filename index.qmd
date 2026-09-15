@@ -2,7 +2,9 @@
 title: "It Works on YOUR Machine too thanks to Pixi"
 author: Raniere Silva
 date: 2026-09-22
-format: revealjs
+format:
+  revealjs:
+    footer: "It Works on YOUR Machine too thanks to Pixi - Raniere Silva"
 title-slide-attributes:
   data-background-image: ./img/screwdriver.jpg
   data-background-position: bottom
@@ -229,6 +231,20 @@ Why did the attempt to reproduce the results fail?
 
 ::::
 
+## Poll {background-image="./img/poll.jpg" background-opacity="0.6"}
+
+:::: {.columns}
+
+::: {.column width="60%"}
+How would you procedure to find the root cause of the observed output?
+:::
+
+::: {.column width="40%"}
+
+:::
+
+::::
+
 ## Bisect {background-image="./img/bisect.jpg" background-opacity="0.6"}
 
 - 4.38 is good
@@ -250,13 +266,21 @@ GLPK 4.40 include the following change
 
 ## Live demo
 
-If you are using a GNU/Linux machine, you can run
+You can run
 
 ```bash
 cd examples/magic-square/
 pixi run solve 4.39
 pixi run solve 4.40
 ```
+
+::: {.callout-note}
+It was not tested on macOS.
+:::
+
+::: {.callout-note}
+It does not work on Windows because GLPK's installation uses has many compilation dependencies.
+:::
 
 # Introduction and Installation {background-image="./img/installation.jpg" background-opacity="0.6"}
 
@@ -318,10 +342,6 @@ Screenshot of https://pixi.prefix.dev/latest/ on 2026-01-05.
 ## File system used by Pixi
 
 ![](img/pixi.svg)
-
-## File system used by Conda
-
-![](img/conda.svg)
 
 ## Use containers instead
 
@@ -523,12 +543,20 @@ Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's
 
 # Learner example {background-image="./img/cake.jpg" background-opacity="0.6"}
 
+## Examples
+
+1. Image processing with Python on Jupyter
+2. Data analysis with R on Jupyter 
+3. Compilation of C code
+4. Matrix operation with PyTorch
+5. Creation of report with Quarto
+
 ## Sarah's use case
 
 :::: {.columns}
 
 ::: {.column width="50%"}
-[![Image by Netguru.](img/446476.svg)](https://www.svgrepo.com/svg/446476/avatar-portrait)
+![](img/sarah.svg)
 :::
 
 ::: {.column width="50%"}
@@ -542,35 +570,187 @@ Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's
 
 ## Sarah's use case - Cheat sheet
 
-1.  Copy course material:
+1. Change directory:
 
     ```bash
-    git clone https://github.com/rgaiacs/dra-ttt-course-pixi-mwe.git
+    cd examples/sarah/
     ```
 
-2. Change directory
-
-    ```bash
-    cd dra-ttt-course-pixi-mwe
-    ```
-
-3.  Check tasks created by instructor:
+2.  Check existing tasks:
 
     ```bash
     pixi task list
     ```
 
-4.  Start Jupyter Lab:
+3.  Start Jupyter Lab:
 
     ```bash
     pixi run lab
     ```
 
-5.  Convert Notebook to R script
+4.  Run cells in Jupyter Notebook.
+
+## Paige's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/paige.svg)
+:::
+
+::: {.column width="50%"}
+- Image processing with Python
+- Jupyter Notebook for exploratory analysis
+:::
+
+::::
+
+## Paige's use case - Cheat sheet
+
+1. Change directory:
 
     ```bash
-    pixi run jupyter nbconvert notes.ipynb --to script
+    cd examples/paige/
     ```
+
+2.  Check existing tasks:
+
+    ```bash
+    pixi task list
+    ```
+
+3.  Start Jupyter Lab:
+
+    ```bash
+    pixi run lab
+    ```
+
+4.  Run cells in Jupyter Notebook.
+
+## Camila's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/camila.svg)
+:::
+
+::: {.column width="50%"}
+- New application written in C
+:::
+
+::::
+
+## Camila's use case - Cheat sheet
+
+::: {.callout-note}
+We are using GCC < 16 because of one issue with [MinGW](https://en.wikipedia.org/wiki/MinGW) used for Windows similar to the one reported on [conda-forge/ctng-compilers-feedstock](https://github.com/conda-forge/ctng-compilers-feedstock/pull/230).
+:::
+
+1. Change directory:
+
+    ```bash
+    cd examples/camila/
+    ```
+
+2.  Check existing tasks:
+
+    ```bash
+    pixi task list
+    ```
+
+3.  Run:
+
+    ```bash
+    pixi run hello
+    ```
+
+## Teri's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/teri.svg)
+:::
+
+::: {.column width="50%"}
+- Fast matrix operations using GPU
+:::
+
+::::
+
+## Teri's use case - Cheat sheet
+
+::: {.callout-note}
+Use of GPU has it's own limitations.
+:::
+
+1. Change directory:
+
+    ```bash
+    cd examples/teri/
+    ```
+
+2.  Check existing tasks:
+
+    ```bash
+    pixi task list
+    ```
+
+3.  Run:
+
+    ```bash
+    pixi run python multiplication.py
+    ```
+
+## Pru's use case
+
+:::: {.columns}
+
+::: {.column width="50%"}
+![](img/pru.svg)
+:::
+
+::: {.column width="50%"}
+- Convert reports in Quarto to Microsoft Word
+:::
+
+::::
+
+## Pru's use case - Cheat sheet
+
+1. Change directory:
+
+    ```bash
+    cd examples/pru/
+    ```
+
+2.  Check existing tasks:
+
+    ```bash
+    pixi task list
+    ```
+
+3.  Run:
+
+    ```bash
+    pixi run preview
+    ```
+
+3.  Run:
+
+    ```bash
+    pixi run render
+    ```
+
+## That's All Folks
+
+1.  Read [Pixi's documentation](https://pixi.sh/latest/).
+2.  Ask question at [Pixi's Discussions hosted on GitHub](https://github.com/prefix-dev/pixi/discussions).
+
+# Part 2 {background-image="./img/part2.jpg" background-opacity="0.6"}
+
+## Agenda
 
 ## Renata's use case
 
@@ -632,22 +812,6 @@ Visit the [Installation](https://pixi.sh/latest/installation/) section on Pixi's
 Pixi does **not** isolate the environment. Tools installed globally will be available. 
 :::
 
-## More features
-
-1.  Integration with
-    - VSCode
-    - RStudio
-    - JupyterLab
-    - GitHub Actions
-    - ...
-2.  Support to multi platform.
-
-    For example, it is possible to specify Python 3.14 for GNU/Linux and Python 3.13 for Windows.
-
-## That's All Folks
-
-1.  Read [Pixi's documentation](https://pixi.sh/latest/).
-2.  Ask question at [Pixi's Discussions hosted on GitHub](https://github.com/prefix-dev/pixi/discussions).
 
 ## Multi Environment (1/3)
 
@@ -702,57 +866,6 @@ Pixi does **not** isolate the environment. Tools installed globally will be avai
     pixi run -e py313 hello
     ```
 
-## Camila's use case
-
-:::: {.columns}
-
-::: {.column width="50%"}
-[![Image by Netguru.](img/446477.svg)](https://www.svgrepo.com/svg/446477/avatar)
-:::
-
-::: {.column width="50%"}
-- New application written in C
-:::
-
-::::
-
-## Camila's C code
-
-```c
-#include <stdio.h>
-
-int main() {
-    printf("Hello World");
-
-    return 0;
-}
-```
-
-## Camila's use case - Cheat sheet
-
-1.  Start environment:
-
-    ```bash
-    pixi init
-    ```
-
-2.  Add dependencies:
-
-    ```bash
-    pixi add gcc
-    ```
-
-3.  Create task:
-
-    ```bash
-    pixi task add make "gcc -o hello hello.c"
-    ```
-
-4.  Run task:
-
-    ```bash
-    pixi run make
-    ```
 
 ## Caution when creating tasks
 
@@ -776,58 +889,5 @@ Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.den
     pixi run myhead
     ```
 
-## Paige's use case
 
-:::: {.columns}
 
-::: {.column width="50%"}
-[![Image by Netguru.](img/446491.svg)](https://www.svgrepo.com/svg/446491/avatar)
-:::
-
-::: {.column width="50%"}
-- Image processing with Python
-- Jupyter Notebook for exploratory analysis
-:::
-
-::::
-
-## Paige's use case - Cheat sheet
-
-1.  Start environment:
-
-    ```bash
-    pixi init --format pyproject
-    ```
-
-2.  Add dependencies:
-
-    ```bash
-    pixi add Pillow requests jupyter notebook
-    ```
-
-3.  Create task:
-
-    ```bash
-    pixi run jupyter notebook
-    ```
-
-## Paige's use case - Jupyter Notebook
-
-```python
-import requests
-from PIL import Image
-from io import BytesIO
-
-with requests.get(
-    'https://github.com/python-pillow/Pillow/' +
-    'blob/main/Tests/images/hopper.jpg?raw=true'
-    ) as r:
-    if r.status_code == 200:
-        hopper = Image.open(BytesIO(r.content))
-
-hopper
-```
-
-# Part 2 {background-image="./img/part2.jpg" background-opacity="0.6"}
-
-## Agenda
