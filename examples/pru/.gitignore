@@ -1,0 +1,9 @@
+# pixi environments
+.pixi/*
+!.pixi/config.toml
+
+/.quarto/
+**/*.quarto_ipynb
+
+minimal-working-example.docx
+minimal-working-example.html

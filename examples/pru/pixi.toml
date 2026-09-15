@@ -1,0 +1,21 @@
+[workspace]
+authors = ["Raniere Gaia Costa da Silva <Raniere.CostadaSilva@gesis.org>"]
+channels = ["conda-forge"]
+name = "pru"
+platforms = ["linux-64"]
+version = "0.1.0"
+
+[tasks]
+
+[tasks.preview]
+cmd = "quarto preview minimal-working-example.qmd --no-browser --render html"
+inputs = ["minimal-working-example.qmd"]
+
+[tasks.render]
+cmd = "quarto render minimal-working-example.qmd --to docx"
+inputs = ["minimal-working-example.qmd"]
+outputs = ["minimal-working-example.docx"]
+
+
+[dependencies]
+quarto = ">=1.9.38,<2"

@@ -1,0 +1,22 @@
+---
+title: "Minimal Working Example"
+format:
+  html:
+    minimal: true
+  docx:
+    reference-doc: template.docx
+---
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ornare tellus neque. Curabitur tempor velit in dapibus pretium. Nunc ultrices nec tellus ac egestas. Nulla efficitur nulla eu mollis placerat. Maecenas egestas nulla massa, interdum sagittis orci finibus et. Donec velit tortor, euismod consectetur ornare ac, luctus quis ligula. Quisque ac purus vitae ex accumsan interdum. Nulla tincidunt eget nunc vitae lacinia. Sed est nisl, congue sed diam quis, bibendum interdum purus. Nunc ante odio, gravida non massa eget, vulputate rhoncus ipsum. Nulla facilisi.
+
+# Nam eget diam
+
+Etiam tortor eros, feugiat nec leo quis, posuere porttitor nibh. Maecenas porta, turpis ac aliquam consectetur, libero tortor laoreet tellus, id porta arcu dolor eu quam. Sed commodo vulputate turpis, at fringilla nibh mattis ac. Donec ut vehicula dui, vel dictum sapien. Donec vel felis efficitur, sollicitudin justo quis, laoreet erat. Aliquam erat volutpat. Cras lorem quam, vehicula quis mauris a, viverra eleifend erat. Suspendisse congue purus sed imperdiet malesuada. Proin nec dictum turpis, id porta quam. Fusce porttitor vestibulum nisl cursus condimentum. Proin ligula massa, rhoncus eget porta sit amet, scelerisque ut nisi. Vivamus placerat sapien iaculis sapien porttitor bibendum. Ut sed ipsum metus. Etiam pellentesque ante nec finibus accumsan. In vel urna ut massa porta molestie. Praesent libero tortor, tristique commodo aliquet sed, dignissim quis nisi.
+
+Nullam et accumsan nunc. Suspendisse potenti. Donec tincidunt eros lorem, eleifend maximus augue sollicitudin volutpat. Curabitur ornare, velit quis convallis faucibus, urna lectus hendrerit lectus, ac vehicula lectus est vitae mi. Nam rhoncus porttitor nibh, eu posuere tellus dictum sed. Praesent id fringilla enim, in faucibus nunc. Integer gravida ac elit quis ullamcorper. Nunc urna tellus, dignissim eu purus sed, accumsan fermentum metus.
+
+# Curabitur lobortis
+
+Integer nisl neque, ullamcorper quis fringilla ac, egestas sit amet orci. Nam lacinia nunc vitae sem varius congue. Praesent mattis ipsum sit amet lacus auctor, quis porttitor lorem hendrerit. Aenean id efficitur massa. Curabitur ac magna et nibh vehicula pulvinar. Morbi at commodo risus. Integer a accumsan felis. Mauris facilisis lectus et neque placerat, ut aliquam augue gravida. Cras dolor elit, vehicula eget eleifend a, cursus vel enim. Morbi malesuada interdum ex non porttitor. Cras id magna lorem. Integer nec mi finibus urna rhoncus bibendum vel id dolor.
+
+Quisque luctus volutpat est. Vivamus sit amet rhoncus enim. Proin eu varius felis, eget congue mauris. Sed nec finibus neque. Quisque fringilla aliquet tellus quis lacinia. Mauris nec justo vitae mi dictum pulvinar non vitae elit. Praesent vehicula vitae leo vitae consectetur. Phasellus mollis gravida lobortis. Aenean interdum non ligula eget sollicitudin. Fusce ultricies maximus odio id feugiat. Nullam maximus, lorem in mattis ultricies, mi diam varius dui, ut accumsan nisl arcu et odio. 
