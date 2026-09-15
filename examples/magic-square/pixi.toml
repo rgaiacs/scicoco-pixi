@@ -2,7 +2,7 @@
 authors = ["Raniere Silva <raniere@rgaiacs.com>"]
 channels = ["conda-forge"]
 name = "magic-square"
-platforms = ["linux-64"]
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
 version = "0.1.0"
 
 [tasks]
@@ -29,7 +29,7 @@ args = [
         "choices" = ["4.39", "4.40"]
     },
 ]
-cmd = "tar -xzf glpk-{{ version }}.tar.gz"
+cmd = "7z x -y glpk-{{ version }}.tar.gz; 7z x -y glpk-{{ version }}.tar"
 inputs = ["glpk-{{ version }}.tar.gz"]
 outputs = ["glpk-{{ version }}"]
 
@@ -110,5 +110,4 @@ cmd = "./glpk-{{ version }}/examples/glpsol --math --model model.mod --tmlim 300
 curl = ">=8.22.0,<9"
 gcc = ">=16.2.0,<16.3"
 make = ">=4.4.1,<5"
-gzip = ">=1.14,<2"
-tar = ">=1.35,<2"
+7zip = ">=26.3,<27"
