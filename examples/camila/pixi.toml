@@ -1,0 +1,22 @@
+[workspace]
+authors = ["Raniere Gaia Costa da Silva <Raniere.CostadaSilva@gesis.org>"]
+channels = ["conda-forge"]
+name = "camila"
+platforms = ["win-64", "linux-64", "osx-64", "osx-arm64"]
+version = "0.1.0"
+
+[tasks]
+
+[tasks.make]
+cmd = "gcc -o hello hello.c"
+inputs = ["hello.c"]
+outputs = ["hello{% if pixi.is_win %}.exe{% endif %}"]
+
+[tasks.hello]
+cmd = "./hello{% if pixi.is_win %}.exe{% endif %}"
+depends-on = [
+    { task = "make" }
+]
+
+[dependencies]
+gcc = ">=15,<16"
