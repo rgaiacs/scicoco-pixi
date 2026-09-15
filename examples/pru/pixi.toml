@@ -8,10 +8,12 @@ version = "0.1.0"
 [tasks]
 
 [tasks.preview]
+description = "Preview document in the web browser"
 cmd = "quarto preview minimal-working-example.qmd --no-browser --render html"
 inputs = ["minimal-working-example.qmd"]
 
 [tasks.render]
+description = "Render document into Microsoft Word"
 cmd = "quarto render minimal-working-example.qmd --to docx"
 inputs = ["minimal-working-example.qmd"]
 outputs = ["minimal-working-example.docx"]

@@ -8,11 +8,13 @@ version = "0.1.0"
 [tasks]
 
 [tasks.make]
+description = "Compile hello.c"
 cmd = "gcc -o hello hello.c"
 inputs = ["hello.c"]
 outputs = ["hello{% if pixi.is_win %}.exe{% endif %}"]
 
 [tasks.hello]
+description = "Run hello.c"
 cmd = "./hello{% if pixi.is_win %}.exe{% endif %}"
 depends-on = [
     { task = "make" }
