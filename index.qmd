@@ -753,16 +753,49 @@ Use of GPU has it's own limitations.
 ## Terminology
 
 platform
-: it is a combination of hardware and software, e.g. Windows AMD64 and macOS ARM64.
+: it is a combination of hardware and software.
 
 workspace
-: it is a directory with a file named `pixi.toml` or `pyproject.toml`.
+: directory where `pixi.toml` or `pyproject.toml` lives.
 
 feature
-: reusable collection of dependencies and tasks
+: reusable collection of dependencies and tasks.
 
 environment
-: composable set of dependencies and tasks from features
+: composable set of dependencies and tasks from features.
+
+channel
+: source of the packages to be installed.
+
+## Platforms
+
+::::: {.columns}
+
+:::: {.column width="40%"}
+- `noarch`
+- `linux-64`
+- `linux-aarch64`
+- `osx-64`
+- `osx-arm64`
+- `win-64`
+- `win-arm64`
+::::
+
+:::: {.column width="60%"}
+::: {.callout-note}
+You **must** declare the supported platforms in your `pixi.toml` using the key `workspace.platforms`.
+:::
+::::
+
+:::::
+
+## Channels
+
+The biggest channel is `conda-forge` and it host many popular Python and R packages.
+
+Another popular channel for research software is `bioconda`.
+
+It is also possible to host your own private channel (outside of the scope of this workshop).
 
 ## Agenda
 
@@ -803,7 +836,7 @@ environment
     git add . && git commit -m "Add pixi config" && git push origin main
     ```
 
-## Python package - Cheat sheet (1/2)
+## Python package - Cheat sheet (1/3)
 
 1.  Start new workspace:
 
@@ -825,9 +858,9 @@ The Pixi configuration is in the `tool.pixi` namespace.
 The name of the workspace is also the name of the Python package.
 :::
 
-## Python package - Cheat sheet (2/2)
+## Python package - Cheat sheet (2/3)
 
-3. Create environment for Python 3.10 and 3.14.
+3.  Create environment for Python 3.10 and 3.14.
 
     ```bash
     pixi workspace environment add py311
@@ -836,11 +869,32 @@ The name of the workspace is also the name of the Python package.
     pixi add -e py314 python=3.14
     ```
 
-4. Load the `scicoco` package with both environments.
+4.  Load the `scicoco` package with both environments.
 
     ```bash
     pixi run -e py311 python -c "import scicoco"
     pixi run -e py314 python -c "import scicoco"
+    ```
+
+## Python package - Cheat sheet (3/3)
+
+5.  Create environment for development.
+
+    ```bash
+    pixi add -e dev python==3.14
+    pixi add -e dev ruff
+    ```
+
+6.  Add task for lint files.
+
+    ```bash
+    pixi task add -e dev lint ruff format src
+    ```
+
+7.  Format source code.
+
+    ```bash
+    pixi run lint
     ```
 
 ## Environment activation - Cheat sheet
