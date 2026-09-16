@@ -799,8 +799,48 @@ It is also possible to host your own private channel (outside of the scope of th
 
 ## Agenda
 
-1. Data analysis
-2. Python package
+1. Standalone scripts
+2. Data analysis
+3. Python package
+4. Advanced tasks
+
+## Standalone scripts (1/2)
+
+::: {.callout-note}
+This is defined in [PEP 723](https://peps.python.org/pep-0723/).
+:::
+
+::: {.callout-note}
+This is a experimental feature for other programming languages.
+:::
+
+1.  Create `hello.py` with
+
+    ```python
+    import cowsay
+    
+    cowsay.cow('Hello World')
+    ```
+
+## Standalone scripts (2/2)
+
+2.  Create metadata in `hello.py`:
+
+    ```bash
+    pixi init --script hello.py
+    ```
+
+3.  Add dependencies:
+
+    ```bash
+    pixi add --script hello.py --pypi cowsay
+    ```
+
+4.  Run script:
+
+    ```bash
+    pixi run --script hello.py
+    ```
 
 ## Data analysis - Cheat sheet (1/2)
 
@@ -836,7 +876,7 @@ It is also possible to host your own private channel (outside of the scope of th
     git add . && git commit -m "Add pixi config" && git push origin main
     ```
 
-## Python package - Cheat sheet (1/3)
+## Python package - Cheat sheet (1/4)
 
 1.  Start new workspace:
 
@@ -858,7 +898,7 @@ The Pixi configuration is in the `tool.pixi` namespace.
 The name of the workspace is also the name of the Python package.
 :::
 
-## Python package - Cheat sheet (2/3)
+## Python package - Cheat sheet (2/4)
 
 3.  Create environment for Python 3.10 and 3.14.
 
@@ -876,7 +916,7 @@ The name of the workspace is also the name of the Python package.
     pixi run -e py314 python -c "import scicoco"
     ```
 
-## Python package - Cheat sheet (3/3)
+## Python package - Cheat sheet (3/4)
 
 5.  Create environment for development.
 
@@ -896,6 +936,61 @@ The name of the workspace is also the name of the Python package.
     ```bash
     pixi run lint
     ```
+
+## Python package - Cheat sheet (4/4)
+
+::: {.callout-note}
+You can add dependencies from PyPI.
+:::
+
+8.  Add pytest to environment for development.
+
+   ```bash
+   pixi add -e dev --pypi pytest
+   ```
+
+## More about multi environment
+
+Run
+
+```python
+try:
+    print("Hello!")
+except RuntimeError, ValueError:
+    print('Except.')
+```
+
+with the following versions of Python
+
+- 3.13.*
+- 3.14.*
+
+## Advanced tasks
+
+## Migration - Import
+
+Two formats are supported:
+
+- `conda-env`
+- `pypi-txt`
+
+```bash
+pixi init --import ...
+```
+
+or
+
+```bash
+pixi import ...
+```
+
+## Migration - Rosetta Stone
+
+Tables with equivalent commands are available for
+
+- [uv](https://pixi.prefix.dev/latest/switching_from/uv/)
+- [Poetry](https://pixi.prefix.dev/latest/switching_from/poetry/)
+- [Conda](https://pixi.prefix.dev/latest/switching_from/conda/)
 
 ## Environment activation - Cheat sheet
 
@@ -920,61 +1015,6 @@ The name of the workspace is also the name of the Python package.
 ::: {.callout-important}
 Pixi does **not** isolate the environment. Tools installed globally will be available. 
 :::
-
-
-## Multi Environment (1/3)
-
-1.  Create `hello.py` with
-
-    ```python
-    try:
-        print("Hello!")
-    except RuntimeError, ValueError:
-        print('Except.')
-    ```
-
-2.  Start environment:
-
-    ```bash
-    pixi init
-    ```
-
-3.  Create task:
-
-    ```bash
-    pixi task add hello "python hello.py"
-    ```
-
-## Multi Environment (2/3)
-
-4.  Edit `pixi.toml` to include
-
-    ```
-    [feature.py313.dependencies]
-    python = "~=3.13.0"
-
-    [feature.py314.dependencies]
-    python = "~=3.14.0"
-
-    [environments]
-    py313 = ["py313"]
-    py314 = ["py314"]
-    ```
-
-## Multi Environment (3/3)
-
-4.  Run task:
-
-    ```bash
-    pixi run -e py314 hello
-    ```
-
-5.  Run task:
-
-    ```bash
-    pixi run -e py313 hello
-    ```
-
 
 ## Caution when creating tasks
 
