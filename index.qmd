@@ -31,6 +31,8 @@ Source: [10.1016/j.celrep.2014.02.021](https://doi.org/10.1016/j.celrep.2014.02.
 
 ::: {.column width="40%"}
 ![](img/raniere-silva.jpg){fig-align="center"}
+
+`rgaiacs` on most platforms.
 :::
 
 ::::
@@ -343,16 +345,27 @@ Screenshot of https://pixi.prefix.dev/latest/ on 2026-01-05.
 
 ![](img/pixi.svg)
 
-## Use containers instead
+## Alternative tools to Pixi
 
-If your project has one of the following requirements
+Please attend the birds of a feather session "**Reproducible Science: Tools in Comparison**" tomorrow at 10:15. 
 
-- run two database serves simultaneous
-- use a different version of C standard library
+## Alternative tools to Pixi - Sneak Peek
 
-you should use containers (for example, [Podman](https://podman.io/), [Docker](https://www.docker.com/), [Apptainer](https://apptainer.org/), ...) instead of Pixi.
+- WebAssembly (aka Wasm)
 
-Also, you **must** use containers if you want complete isolation from the host machine.
+  When you want users to skip installation.
+
+- Podman (or Docker)
+
+  When you want users to have multiple clean rooms.
+
+- Apptainer (or Singularity)
+
+  When you want users to have bare metal performance.
+
+- Virtual Machine (e.g. KVM, Hyper-V)
+
+  When you want users to use a separate kernel.
 
 ## How?
 
@@ -745,8 +758,20 @@ Use of GPU has it's own limitations.
 
 ## That's All Folks
 
+:::: {.columns}
+
+::: {.column width="60%"}
 1.  Read [Pixi's documentation](https://pixi.sh/latest/).
 2.  Ask question at [Pixi's Discussions hosted on GitHub](https://github.com/prefix-dev/pixi/discussions).
+:::
+
+::: {.column width="40%"}
+![](img/raniere-silva.jpg){fig-align="center"}
+
+`rgaiacs` on most platforms.
+:::
+
+::::
 
 # Part 2 {background-image="./img/part2.jpg" background-opacity="0.6"}
 
@@ -965,7 +990,65 @@ with the following versions of Python
 - 3.13.*
 - 3.14.*
 
-## Advanced tasks
+## Advanced tasks - Leaking
+
+::: {.callout-important}
+Pixi does **not** isolate the environment. Tools installed globally will be available. 
+:::
+
+1.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi task add server "python3 -m http.server"
+    ```
+
+4.  Run task:
+
+    ```bash
+    pixi run server
+    ```
+
+## Advanced tasks - Interoperability
+
+::: {.callout-important}
+Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.deno.com/runtime/reference/cli/task/#built-in-commands).
+:::
+
+1.  Start environment:
+
+    ```bash
+    pixi init
+    ```
+
+3.  Create task:
+
+    ```bash
+    pixi task add myhead "head --help"
+    ```
+
+4.  Run task:
+
+    ```bash
+    pixi run myhead
+    ```
+
+## Advanced tasks - Workflow management system
+
+::: {.callout-note}
+You can define `inputs`, `outputs`, and `depends-on` to create powerful workflows.
+:::
+
+::: {.callout-note}
+Pixi uses `inputs` and `outputs` to skip tasks when needed.
+:::
+
+The magic square used in the first part is a great minimal working example that uses `inputs`, `outputs`, and `depends-on`.
 
 ## Migration - Import
 
@@ -992,51 +1075,19 @@ Tables with equivalent commands are available for
 - [Poetry](https://pixi.prefix.dev/latest/switching_from/poetry/)
 - [Conda](https://pixi.prefix.dev/latest/switching_from/conda/)
 
-## Environment activation - Cheat sheet
+## That's All Folks
 
-3.  Add dependencies to `default` workspace:
+:::: {.columns}
 
-    ```bash
-    pixi add jupyterlab r-base r-ggplot2 xeus-r
-    ```
-
-1.  Activate environment:
-
-    ```bash
-    pixi shell
-    ```
-
-2.  Run R command:
-
-    ```bash
-    Rscript -e "1 + 1"
-    ```
-
-::: {.callout-important}
-Pixi does **not** isolate the environment. Tools installed globally will be available. 
+::: {.column width="60%"}
+1.  Read [Pixi's documentation](https://pixi.sh/latest/).
+2.  Ask question at [Pixi's Discussions hosted on GitHub](https://github.com/prefix-dev/pixi/discussions).
 :::
 
-## Caution when creating tasks
+::: {.column width="40%"}
+![](img/raniere-silva.jpg){fig-align="center"}
 
-Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.deno.com/runtime/reference/cli/task/#built-in-commands).
+`rgaiacs` on most platforms.
+:::
 
-1.  Start environment:
-
-    ```bash
-    pixi init
-    ```
-
-3.  Create task:
-
-    ```bash
-    pixi task add myhead "head --help"
-    ```
-
-4.  Run task:
-
-    ```bash
-    pixi run myhead
-    ```
-
-
-
+::::
