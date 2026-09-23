@@ -346,11 +346,6 @@ Screenshot of https://pixi.prefix.dev/latest/ on 2026-01-05.
 ![](img/pixi.svg)
 
 ## Alternative tools to Pixi
-
-Please attend the birds of a feather session "**Reproducible Science: Tools in Comparison**" tomorrow at 10:15. 
-
-## Alternative tools to Pixi - Sneak Peek
-
 - WebAssembly (aka Wasm)
 
   When you want users to skip installation.
@@ -861,13 +856,17 @@ This is a experimental feature for other programming languages.
     pixi add --script hello.py --pypi cowsay
     ```
 
+::: {.callout-note}
+The `--pypi` brings the dependence from PyPI.
+:::
+
 4.  Run script:
 
     ```bash
     pixi run --script hello.py
     ```
 
-## Data analysis - Cheat sheet (1/2)
+## Data analysis - Cheat sheet (1/3)
 
 1.  Start new workspace:
 
@@ -887,7 +886,7 @@ This is a experimental feature for other programming languages.
     pixi add jupyterlab r-base r-ggplot2 xeus-r
     ```
 
-## Data analysis - Cheat sheet (2/2)
+## Data analysis - Cheat sheet (2/3)
 
 4.  Create task in `default` workspace:
 
@@ -895,13 +894,28 @@ This is a experimental feature for other programming languages.
     pixi task add lab "jupyter lab --no-browser"
     ```
 
-5.  Share files:
+5.  Run some R code to test that everything is working as expected.
+    For example,
 
-    ```bash
-    git add . && git commit -m "Add pixi config" && git push origin main
+    ```r
+    R.version
     ```
 
-## Python package - Cheat sheet (1/4)
+## Data analysis - Cheat sheet (2/3)
+
+6.  Share files:
+
+    ```bash
+    git add .
+    git commit -m "Add pixi config"
+    git push origin main
+    ```
+
+::: {.callout-note}
+Sharing both `pixi.toml` and `pixi.lock` is important to have a common environment among collaborators.
+:::
+
+## Python package - Cheat sheet (1/5)
 
 1.  Start new workspace:
 
@@ -916,16 +930,31 @@ This is a experimental feature for other programming languages.
     ```
 
 ::: {.callout-note}
-The Pixi configuration is in the `tool.pixi` namespace.
+The Pixi configuration is in the `tool.pixi` namespace of `pyproject.toml`.
 :::
 
 ::: {.callout-note}
 The name of the workspace is also the name of the Python package.
 :::
 
-## Python package - Cheat sheet (2/4)
+## Python package - Cheat sheet (2/5)
 
-3.  Create environment for Python 3.10 and 3.14.
+3.  Edit the file `src/scicoco/__init__.py` to be
+
+```
+try:
+    print("Hello!")
+except RuntimeError, ValueError:
+    print("Except.")
+```
+
+::: {.callout-note}
+[PEP 758](https://peps.python.org/pep-0758/) landed in Python 3.14 and allows brackets to be omitted when there are multiple exception types. The above code does not work with Python 3.13 or lower. 
+:::
+
+## Python package - Cheat sheet (3/5)
+
+4.  Create environment for Python 3.10 and 3.14.
 
     ```bash
     pixi workspace environment add py311
@@ -934,7 +963,7 @@ The name of the workspace is also the name of the Python package.
     pixi add -e py314 python=3.14
     ```
 
-4.  Load the `scicoco` package with both environments.
+5.  Load the `scicoco` package with both environments.
 
     ```bash
     pixi run -e py311 python -c "import scicoco"
@@ -943,20 +972,19 @@ The name of the workspace is also the name of the Python package.
 
 ## Python package - Cheat sheet (3/4)
 
-5.  Create environment for development.
+6.  Create environment for development.
 
     ```bash
-    pixi add -e dev python==3.14
     pixi add -e dev ruff
     ```
 
-6.  Add task for lint files.
+7.  Add task for lint files.
 
     ```bash
     pixi task add -e dev lint ruff format src
     ```
 
-7.  Format source code.
+8.  Format source code.
 
     ```bash
     pixi run lint
@@ -965,30 +993,14 @@ The name of the workspace is also the name of the Python package.
 ## Python package - Cheat sheet (4/4)
 
 ::: {.callout-note}
-You can add dependencies from PyPI.
+You can **also** add dependencies from PyPI.
 :::
 
-8.  Add pytest to environment for development.
+9.  Add pytest to environment for development.
 
    ```bash
    pixi add -e dev --pypi pytest
    ```
-
-## More about multi environment
-
-Run
-
-```python
-try:
-    print("Hello!")
-except RuntimeError, ValueError:
-    print('Except.')
-```
-
-with the following versions of Python
-
-- 3.13.*
-- 3.14.*
 
 ## Advanced tasks - Leaking
 
@@ -1017,7 +1029,7 @@ Pixi does **not** isolate the environment. Tools installed globally will be avai
 ## Advanced tasks - Interoperability
 
 ::: {.callout-important}
-Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.deno.com/runtime/reference/cli/task/#built-in-commands).
+Pixi uses [Deno](https://deno.com/)'s implementation of [shell](https://docs.deno.com/runtime/reference/cli/task/#built-in-commands) and some options available at GNU Bash are not available when using `pixi task`.
 :::
 
 1.  Start environment:
